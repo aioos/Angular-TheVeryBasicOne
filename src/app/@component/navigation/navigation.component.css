@@ -1,0 +1,20 @@
+nav a {
+    padding: 0.7rem 1.2rem;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #e8e8e8;
+    color: #3d3d3d;
+    border-radius: 4px;
+    margin: 0 6px;
+}
+
+nav a:hover {
+    color: white;
+    background-color: #42545C;
+}
+
+div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

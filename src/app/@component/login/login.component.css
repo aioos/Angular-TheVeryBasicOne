@@ -1,0 +1,16 @@
+.mat-card {
+    margin: 100px 25% 0;
+}
+
+.mat-card-content {
+    display: flex;
+    flex-direction: column;
+
+    margin: 30px 20%;
+
+    font-size: larger;
+}
+
+input {
+    height: 30px;
+}
