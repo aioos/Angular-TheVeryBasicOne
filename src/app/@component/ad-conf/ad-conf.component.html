@@ -1,0 +1,64 @@
+<mat-card>
+    <mat-card-title>各应用广告配置</mat-card-title>
+    <mat-card-actions align="right">
+        <button mat-button mat-raised-button color="primary" (click)="add()">新建</button>
+        <button mat-button mat-icon-button color="primary" (click)="search()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </mat-card-actions>
+    <mat-card-content>
+        <table mat-table [dataSource]="adConfList" class="mat-elevation-z8">
+            <ng-container matColumnDef="app_name">
+                <th mat-header-cell *matHeaderCellDef>App名称</th>
+                <td mat-cell *matCellDef="let item">{{item.app_name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="app_package_name">
+                <th mat-header-cell *matHeaderCellDef>App包名</th>
+                <td mat-cell *matCellDef="let item">{{item.app_package_name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="scene_name">
+                <th mat-header-cell *matHeaderCellDef>场景名称</th>
+                <td mat-cell *matCellDef="let item">{{item.scene_name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="scene_country">
+                <th mat-header-cell *matHeaderCellDef>场景国家</th>
+                <td mat-cell *matCellDef="let item">{{item.scene_country}}</td>
+            </ng-container>
+            <ng-container matColumnDef="scene_ad_channel">
+                <th mat-header-cell *matHeaderCellDef>场景广告渠道</th>
+                <td mat-cell *matCellDef="let item">{{item.scene_ad_channel}}</td>
+            </ng-container>
+            <ng-container matColumnDef="scene_ad_id">
+                <th mat-header-cell *matHeaderCellDef>场景广告ID</th>
+                <td mat-cell *matCellDef="let item">{{item.scene_ad_id}}</td>
+            </ng-container>
+            <ng-container matColumnDef="scene_ad_name">
+                <th mat-header-cell *matHeaderCellDef>场景广告名称</th>
+                <td mat-cell *matCellDef="let item">{{item.scene_ad_name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="ad_priority">
+                <th mat-header-cell *matHeaderCellDef>广告优先级</th>
+                <td mat-cell *matCellDef="let item">{{item.ad_priority}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="created_at">
+                <th mat-header-cell *matHeaderCellDef>创建日期</th>
+                <td mat-cell *matCellDef="let item">{{item.created_at| date: 'YYYY-MM-dd HH:mm'}}</td>
+            </ng-container>
+            <ng-container matColumnDef="updated_at">
+                <th mat-header-cell *matHeaderCellDef>更新日期</th>
+                <td mat-cell *matCellDef="let item">{{item.updated_at| date: 'YYYY-MM-dd HH:mm'}}</td>
+            </ng-container>
+            <ng-container matColumnDef="operators">
+                <th mat-header-cell *matHeaderCellDef>操作</th>
+                <td mat-cell *matCellDef="let item">
+                    <button mat-stroked-button color="primary" (click)="edit(item)">编辑</button>
+                    <button mat-stroked-button color="warn" (click)="del(item)">删除</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>

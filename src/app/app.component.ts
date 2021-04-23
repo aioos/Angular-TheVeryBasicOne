@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Backstage-Platform-AD-AGG';
+  title = '广告聚合平台';
 }

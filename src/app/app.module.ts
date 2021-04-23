@@ -16,8 +16,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BackstageInterceptor } from './@interceptor/backstage.interceptor';
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { AdConfComponent } from './@component/ad-conf/ad-conf.component';
+import { AdSourceComponent } from './@component/ad-source/ad-source.component';
+import { MatTableModule } from '@angular/material/table';
+import { OneFocusComponent } from './@component/ad-conf/dialog/one-focus/one-focus.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     DashboardComponent,
     NavigationComponent,
     LoginComponent,
+    AdConfComponent,
+    AdSourceComponent,
+    OneFocusComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     HttpClientModule,
 
     MatButtonModule, MatFormFieldModule, MatInputModule, MatCardModule,
-    MatIconModule,
+    MatIconModule, MatTableModule, MatDialogModule, MatSnackBarModule,
 
     JwtModule.forRoot({
       config: {

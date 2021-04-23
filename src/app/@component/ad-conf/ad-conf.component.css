@@ -1,0 +1,19 @@
+.mat-card {
+    margin: 10px 1%;
+}
+
+table {
+    width: 100%;
+}
+
+th.mat-header-cell {
+    text-align: center;
+}
+
+td.mat-cell {
+    text-align: center;
+}
+
+button {
+    margin: 0 2px;
+}
