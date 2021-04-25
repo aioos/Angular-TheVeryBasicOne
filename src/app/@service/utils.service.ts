@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Backstage } from '../@interface/backstage';
 import { Observable } from 'rxjs';
 
@@ -21,8 +21,8 @@ export class UtilsService {
     return this.httpClient.post<string>(`${this.url}/login`, b, this.httpOptions);
   }
 
-  getList<T>(url: string): Observable<T[]> {
-    return this.httpClient.get<T[]>(`${this.url}/${url}`);
+  getList<T>(url: string, params?): Observable<T[]> {
+    return this.httpClient.get<T[]>(`${this.url}/${url}`, {params});
   }
 
   save<T>(url: string, data: T): Observable<T> {
@@ -31,5 +31,15 @@ export class UtilsService {
 
   del(url: string, id: number): Observable<any> {
     return this.httpClient.delete(`${this.url}/${url}/${id}`);
+  }
+
+  /**
+   * Non Http
+   */
+  enumKeys(e: object): { key: string, value: string | number }[] {
+    return Object.keys(e).map(item => ({
+      key: item,
+      value: e[item]
+    }));
   }
 }

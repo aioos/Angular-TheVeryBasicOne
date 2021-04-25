@@ -8,5 +8,5 @@ export interface AdSource {
   app_name?: string;
   data_date?: string;
   scene_country?: string;
-  scene_name?: string
+  scene_name?: string;
 }

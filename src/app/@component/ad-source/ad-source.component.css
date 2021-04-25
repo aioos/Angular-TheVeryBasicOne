@@ -1,0 +1,29 @@
+.mat-card {
+    margin: 10px 1%;
+}
+
+table {
+    width: 100%;
+}
+
+th.mat-header-cell {
+    text-align: center;
+}
+
+td.mat-cell {
+    text-align: center;
+}
+
+button {
+    margin: 0 2px;
+}
+
+.table-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.mat-form-field-appearance-outline {
+    margin: 0 2px;
+}

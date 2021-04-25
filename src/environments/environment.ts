@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:3010/backstage'
+  baseUrl: 'http://localhost:3010/backstage',
+  allowedDomains: ['localhost:3010', '13.125.235.191:8888']
 };
 
 /*

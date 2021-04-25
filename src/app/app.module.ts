@@ -23,6 +23,11 @@ import { AdSourceComponent } from './@component/ad-source/ad-source.component';
 import { MatTableModule } from '@angular/material/table';
 import { OneFocusComponent } from './@component/ad-conf/dialog/one-focus/one-focus.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -44,11 +49,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
     MatButtonModule, MatFormFieldModule, MatInputModule, MatCardModule,
     MatIconModule, MatTableModule, MatDialogModule, MatSnackBarModule,
+    MatDatepickerModule, MatNativeDateModule, MatSelectModule,
+    MatTableExporterModule,
 
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('token'),
-        allowedDomains: ['localhost:3010', '13.125.235.191:8888', 'watermelonapi.com'],
+        allowedDomains: environment.allowedDomains,
         headerName: 'Authorization',
         authScheme: 'Bearer ',
         throwNoTokenError: false,
@@ -59,7 +66,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: HTTP_INTERCEPTORS, useClass: BackstageInterceptor, multi: true},
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: false}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: false}},
+    {provide: MAT_DATE_LOCALE, useValue: 'zh-cn'},
   ],
   bootstrap: [AppComponent]
 })

@@ -1,1 +1,129 @@
-<p>ad-source works!</p>
+<mat-card>
+    <mat-card-title>广告统计</mat-card-title>
+    <div class="table-bar">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="Start date" [(ngModel)]="params.date_start">
+                    <input matEndDate placeholder="End date" [(ngModel)]="params.date_end">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <button mat-icon-button
+                        matSuffix
+                        *ngIf="params.date_start || params.date_end"
+                        (click)="params.date_start=null;params.date_end=null;search();"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-date-range-picker #picker>
+                    <mat-date-range-picker-actions>
+                        <button mat-button matDateRangePickerCancel>Cancel</button>
+                        <button mat-raised-button
+                                color="primary"
+                                matDateRangePickerApply
+                                (click)="resolveDate();search()">Apply
+                        </button>
+                    </mat-date-range-picker-actions>
+                </mat-date-range-picker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Country</mat-label>
+                <mat-select [(value)]="params.scene_country" (valueChange)="search()">
+                    <mat-option *ngFor="let country of countryParamList"
+                                value="{{country.value}}">{{country.key}}</mat-option>
+                </mat-select>
+                <button mat-icon-button
+                        matSuffix
+                        *ngIf="params.scene_country"
+                        (click)="params.scene_country=null; search($event);$event.stopPropagation()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>场景名称</mat-label>
+                <input matInput [(ngModel)]="params.scene_name">
+                <button *ngIf="params.scene_name"
+                        matSuffix
+                        mat-icon-button
+                        (click)="search($event);$event.stopPropagation()"
+                        color="primary">
+                    <mat-icon>search</mat-icon>
+                </button>
+                <button mat-icon-button
+                        matSuffix
+                        *ngIf="params.scene_name"
+                        (click)="params.scene_name=null; search($event);$event.stopPropagation()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <mat-card-actions align="right">
+            <mat-form-field appearance="standard" style="width: 50%">
+                <mat-label>Download</mat-label>
+                <mat-select [(value)]="chosenExportType">
+                    <mat-option *ngFor="let country of exportTypeList"
+                                value="{{country.value}}">{{country.key}}
+                    </mat-option>
+                </mat-select>
+                <button mat-icon-button
+                        matPrefix
+                        *ngIf="chosenExportType"
+                        (click)="exporter.exportTable(chosenExportType, {
+                            fileName: generateFilename()
+                        }); $event.stopPropagation()"
+                        color="primary">
+                    <mat-icon style="font-size: x-large">download</mat-icon>
+                </button>
+            </mat-form-field>
+            <button mat-icon-button color="primary" (click)="search()">
+                <mat-icon>refresh</mat-icon>
+            </button>
+        </mat-card-actions>
+    </div>
+    <mat-card-content>
+        <table mat-table [dataSource]="list" class="mat-elevation-z8" matTableExporter #exporter="matTableExporter">
+            <ng-container matColumnDef="data_date">
+                <th mat-header-cell *matHeaderCellDef>日期</th>
+                <td mat-cell *matCellDef="let item">{{item.data_date}}</td>
+            </ng-container>
+            <ng-container matColumnDef="app_name">
+                <th mat-header-cell *matHeaderCellDef>App名称</th>
+                <td mat-cell *matCellDef="let item">{{item.app_name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="scene_name">
+                <th mat-header-cell *matHeaderCellDef>场景名称</th>
+                <td mat-cell *matCellDef="let item">{{item.scene_name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="scene_country">
+                <th mat-header-cell *matHeaderCellDef>场景国家</th>
+                <td mat-cell *matCellDef="let item">{{item.scene_country}}</td>
+            </ng-container>
+            <ng-container matColumnDef="ad_name">
+                <th mat-header-cell *matHeaderCellDef>广告名称</th>
+                <td mat-cell *matCellDef="let item">{{item.ad_name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="ad_id">
+                <th mat-header-cell *matHeaderCellDef>广告ID</th>
+                <td mat-cell *matCellDef="let item">{{item.ad_id}}</td>
+            </ng-container>
+            <ng-container matColumnDef="ad_id_income">
+                <th mat-header-cell *matHeaderCellDef>广告ID收入</th>
+                <td mat-cell *matCellDef="let item">{{item.ad_id_income}}</td>
+            </ng-container>
+            <ng-container matColumnDef="ad_id_display_amount">
+                <th mat-header-cell *matHeaderCellDef>广告展示量</th>
+                <td mat-cell *matCellDef="let item">{{item.ad_id_display_amount}}</td>
+            </ng-container>
+            <ng-container matColumnDef="ad_id_ecpm">
+                <th mat-header-cell *matHeaderCellDef>广告ecpm</th>
+                <td mat-cell *matCellDef="let item">{{item.ad_id_ecpm}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>
