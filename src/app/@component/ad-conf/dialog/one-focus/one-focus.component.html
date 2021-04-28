@@ -1,97 +1,133 @@
 <!--todo Make custom `form field` component-->
 <mat-card>
-    <mat-card-content>
-        <mat-form-field appearance="outline">
-            <mat-label>App名称</mat-label>
-            <input matInput [(ngModel)]="item.app_name">
-            <button mat-icon-button
-                    matSuffix
-                    *ngIf="item.app_name"
-                    (click)="item.app_name=''"
-                    color="warn">
-                <mat-icon>close</mat-icon>
+    <form #iForm="ngForm" (ngSubmit)="save(iForm)">
+        <mat-card-content>
+            <mat-form-field appearance="outline">
+                <mat-label>App名称</mat-label>
+                <input matInput [ngModel]="item.app_name" name="app_name" #app_name="ngModel" required>
+                <button mat-icon-button
+                        matSuffix
+                        *ngIf="app_name.value"
+                        (click)="app_name.reset()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="app_name.invalid && app_name.errors.required">app_name is required.</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>App包名</mat-label>
+                <!--                <input matInput [ngModel]="item.app_package_name" name="app_package_name" #app_package_name="ngModel"-->
+                <!--                       required>-->
+                <mat-select [ngModel]="item.app_package_name" #app_package_name="ngModel" name="app_package_name"
+                            required>
+                    <mat-option *ngFor="let appId of appIDParamList" value="{{appId.value}}">{{appId.key}}</mat-option>
+                </mat-select>
+                <button mat-icon-button
+                        matSuffix
+                        *ngIf="app_package_name.value"
+                        (click)="app_package_name.reset(); $event.stopPropagation()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="app_package_name.invalid && app_package_name.errors.required">app_package_name is
+                    required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>场景名称</mat-label>
+                <!--                <input matInput [ngModel]="item.scene_name" name="scene_name" #scene_name="ngModel"-->
+                <!--                       required>-->
+                <mat-select [ngModel]="item.scene_name" name="scene_name" #scene_name="ngModel"
+                            required>
+                    <mat-option *ngFor="let scene of sceneParamList" value="{{scene.value}}">{{scene.key}}</mat-option>
+                </mat-select>
+                <button mat-icon-button
+                        matSuffix
+                        *ngIf="scene_name.value"
+                        (click)="scene_name.reset(); $event.stopPropagation()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="scene_name.invalid && scene_name.errors.required">scene_name is
+                    required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>场景国家</mat-label>
+                <!--                <input matInput [ngModel]="item.scene_country" name="scene_country" #scene_country="ngModel"-->
+                <!--                       required>-->
+                <mat-select [ngModel]="item.scene_country" name="scene_country" #scene_country="ngModel"
+                            required>
+                    <mat-option *ngFor="let country of countryParamList"
+                                value="{{country.value}}">{{country.key}}</mat-option>
+                </mat-select>
+                <button mat-icon-button matSuffix
+                        *ngIf="scene_country.value"
+                        (click)="scene_country.reset(); $event.stopPropagation()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="scene_country.invalid && scene_country.errors.required">scene_country is
+                    required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>场景广告渠道</mat-label>
+                <input matInput [ngModel]="item.scene_ad_channel" name="scene_ad_channel" #scene_ad_channel="ngModel"
+                       required>
+                <button mat-icon-button matSuffix *ngIf="scene_ad_channel.value" (click)="scene_ad_channel.reset()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="scene_ad_channel.invalid && scene_ad_channel.errors.required">scene_ad_channel is
+                    required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>场景广告ID</mat-label>
+                <input matInput [ngModel]="item.scene_ad_id" name="scene_ad_id" #scene_ad_id="ngModel"
+                       required>
+                <button mat-icon-button matSuffix *ngIf="scene_ad_id.value" (click)="scene_ad_id.reset()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="scene_ad_id.invalid && scene_ad_id.errors.required">scene_ad_id is
+                    required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>场景广告名称</mat-label>
+                <input matInput [ngModel]="item.scene_ad_name" name="scene_ad_name" #scene_ad_name="ngModel"
+                       required>
+                <button mat-icon-button matSuffix *ngIf="scene_ad_name.value" (click)="scene_ad_name.reset()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="scene_ad_name.invalid && scene_ad_name.errors.required">scene_ad_name is
+                    required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>广告优先级</mat-label>
+                <input matInput [ngModel]="item.ad_priority" name="ad_priority" #ad_priority="ngModel"
+                       type="number" required>
+                <button mat-icon-button matSuffix
+                        *ngIf="ad_priority.value"
+                        (click)="ad_priority.reset()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="ad_priority.invalid && ad_priority.errors.required">ad_priority is
+                    required.
+                </mat-error>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions align="right">
+            <button type="button" mat-stroked-button color="" (click)="close()">Cancel</button>
+            <button mat-stroked-button
+                    color="primary"
+                    type="submit">Save
             </button>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>App包名</mat-label>
-            <input matInput [(ngModel)]="item.app_package_name">
-            <button mat-icon-button
-                    matSuffix
-                    *ngIf="item.app_package_name"
-                    (click)="item.app_package_name=''"
-                    color="warn">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>场景名称</mat-label>
-            <input matInput [(ngModel)]="item.scene_name">
-            <button mat-icon-button
-                    matSuffix
-                    *ngIf="item.scene_name"
-                    (click)="item.scene_name=''"
-                    color="warn">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>场景国家</mat-label>
-            <input matInput [(ngModel)]="item.scene_country">
-            <button mat-icon-button
-                    matSuffix
-                    *ngIf="item.scene_country"
-                    (click)="item.scene_country=''"
-                    color="warn">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>场景广告渠道</mat-label>
-            <input matInput [(ngModel)]="item.scene_ad_channel">
-            <button mat-icon-button
-                    matSuffix
-                    *ngIf="item.scene_ad_channel"
-                    (click)="item.scene_ad_channel=''"
-                    color="warn">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>场景广告ID</mat-label>
-            <input matInput [(ngModel)]="item.scene_ad_id">
-            <button mat-icon-button
-                    matSuffix
-                    *ngIf="item.scene_ad_id"
-                    (click)="item.scene_ad_id=''"
-                    color="warn">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>场景广告名称</mat-label>
-            <input matInput [(ngModel)]="item.scene_ad_name">
-            <button mat-icon-button
-                    matSuffix
-                    *ngIf="item.scene_ad_name"
-                    (click)="item.scene_ad_name=''"
-                    color="warn">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>广告优先级</mat-label>
-            <input matInput [(ngModel)]="item.ad_priority" type="number">
-            <button mat-icon-button
-                    matSuffix
-                    *ngIf="item.ad_priority"
-                    (click)="item.ad_priority=null"
-                    color="warn">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions align="right">
-        <button mat-stroked-button color="" (click)="close()">Cancel</button>
-        <button mat-stroked-button color="primary" (click)="save()">Save</button>
-    </mat-card-actions>
+        </mat-card-actions>
+    </form>
 </mat-card>

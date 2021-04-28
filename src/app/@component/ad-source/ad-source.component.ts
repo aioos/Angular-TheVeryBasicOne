@@ -21,8 +21,8 @@ export class AdSourceComponent implements OnInit {
     'ad_id_display_amount', 'ad_id_ecpm'
   ];
 
-  countryParamList = this.utilsService.enumKeys(Country);
-  exportTypeList = this.utilsService.enumKeys(ExportType);
+  countryParamList = this.utilsService.enumToArray(Country);
+  exportTypeList = this.utilsService.enumToArray(ExportType);
 
   private urlPath = 'ad-source';
   public chosenExportType = ExportType.CSV;

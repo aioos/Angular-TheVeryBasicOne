@@ -1,11 +1,57 @@
 <mat-card>
     <mat-card-title>各应用广告配置</mat-card-title>
-    <mat-card-actions align="right">
-        <button mat-button mat-raised-button color="primary" (click)="add()">新建</button>
-        <button mat-button mat-icon-button color="primary" (click)="search()">
-            <mat-icon>refresh</mat-icon>
-        </button>
-    </mat-card-actions>
+    <div class="table-bar">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>App包名</mat-label>
+                <mat-select [(value)]="params.app_package_name" (valueChange)="search()">
+                    <mat-option *ngFor="let app of appIDParamList"
+                                value="{{app.value}}">{{app.key}}</mat-option>
+                </mat-select>
+                <button mat-icon-button
+                        matSuffix
+                        *ngIf="params.app_package_name"
+                        (click)="params.app_package_name=null; search();$event.stopPropagation()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>场景名称</mat-label>
+                <mat-select [(value)]="params.scene_name" (valueChange)="search()">
+                    <mat-option *ngFor="let scene of sceneParamList"
+                                value="{{scene.value}}">{{scene.key}}</mat-option>
+                </mat-select>
+                <button mat-icon-button
+                        matSuffix
+                        *ngIf="params.scene_name"
+                        (click)="params.scene_name=null; search();$event.stopPropagation()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Country</mat-label>
+                <mat-select [(value)]="params.scene_country" (valueChange)="search()">
+                    <mat-option *ngFor="let country of countryParamList"
+                                value="{{country.value}}">{{country.key}}</mat-option>
+                </mat-select>
+                <button mat-icon-button
+                        matSuffix
+                        *ngIf="params.scene_country"
+                        (click)="params.scene_country=null; search();$event.stopPropagation()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <mat-card-actions align="right">
+            <button mat-button mat-raised-button color="primary" (click)="add()">新建</button>
+            <button mat-button mat-icon-button color="primary" (click)="search()">
+                <mat-icon>refresh</mat-icon>
+            </button>
+        </mat-card-actions>
+    </div>
     <mat-card-content>
         <table mat-table [dataSource]="adConfList" class="mat-elevation-z8">
             <ng-container matColumnDef="app_name">

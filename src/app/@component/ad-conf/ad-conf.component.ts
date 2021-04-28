@@ -3,6 +3,11 @@ import { AdConf } from './ad-conf';
 import { UtilsService } from '../../@service/utils.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OneFocusComponent } from './dialog/one-focus/one-focus.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { Params } from './params';
+import { Country } from '../../@enum/country.enum';
+import { AppID } from '../../@enum/app-id.enum';
+import { Scene } from '../../@enum/scene.enum';
 
 @Component({
   selector: 'app-ad-conf',
@@ -11,13 +16,18 @@ import { OneFocusComponent } from './dialog/one-focus/one-focus.component';
 })
 export class AdConfComponent implements OnInit {
 
-  adConfList: AdConf[] = [];
+  adConfList: MatTableDataSource<AdConf>;
   columnsToDisplay = [
     'app_name', 'app_package_name', 'scene_name',
     'scene_country', 'scene_ad_channel', 'scene_ad_name',
     'ad_priority', 'created_at', 'updated_at',
     'operators'
   ];
+  baseUrl = 'ad-conf';
+  params: Params = {};
+  countryParamList = this.utilsService.enumToArray(Country);
+  appIDParamList = this.utilsService.enumToArray(AppID);
+  sceneParamList = this.utilsService.enumToArray(Scene);
 
   constructor(
     private utilsService: UtilsService,
@@ -30,7 +40,8 @@ export class AdConfComponent implements OnInit {
   }
 
   search(): void {
-    this.utilsService.getList<AdConf>('ad-conf').subscribe(value => this.adConfList = value);
+    this.utilsService.getList<AdConf>(this.baseUrl, this.params)
+      .subscribe(value => this.adConfList = new MatTableDataSource<AdConf>(value));
   }
 
   edit(row: AdConf): void {
@@ -41,7 +52,7 @@ export class AdConfComponent implements OnInit {
   }
 
   del(row: AdConf): void {
-    this.utilsService.del('ad-conf', row.id).subscribe(() => this.search());
+    this.utilsService.del(this.baseUrl, row.id).subscribe(() => this.search());
   }
 
   add(): void {
@@ -51,8 +62,8 @@ export class AdConfComponent implements OnInit {
       width: '50%'
     });
 
-    dialogRef.afterClosed().subscribe(value => {
-      if (value) {
+    dialogRef.afterClosed().subscribe(afterSaved => {
+      if (afterSaved) {
         this.search();
       }
     });

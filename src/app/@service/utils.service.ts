@@ -36,7 +36,7 @@ export class UtilsService {
   /**
    * Non Http
    */
-  enumKeys(e: object): { key: string, value: string | number }[] {
+  enumToArray(e: object): { key: string, value: string | number }[] {
     return Object.keys(e).map(item => ({
       key: item,
       value: e[item]

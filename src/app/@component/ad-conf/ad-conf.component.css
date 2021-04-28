@@ -17,3 +17,13 @@ td.mat-cell {
 button {
     margin: 0 2px;
 }
+
+.table-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.mat-form-field-appearance-outline {
+    margin: 0 2px;
+}

@@ -66,7 +66,7 @@ import { environment } from '../environments/environment';
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: HTTP_INTERCEPTORS, useClass: BackstageInterceptor, multi: true},
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: false}},
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}},
     {provide: MAT_DATE_LOCALE, useValue: 'zh-cn'},
   ],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import { Backstage } from '../../@interface/backstage';
 import { Router } from '@angular/router';
 import { UtilsService } from '../../@service/utils.service';
 import { EventService } from '../../@service/event.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(): void {
+  login(form: NgForm): void {
+    if (form.invalid) {
+      return;
+    }
     this.utilsService.login(this.backstage).subscribe(token => {
       if (token) {
         localStorage.setItem('token', token);
