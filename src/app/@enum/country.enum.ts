@@ -1,4 +1,9 @@
 export enum Country {
-  巴西 = 'br',
-  美国 = 'us'
+  br = 'br',
+  us = 'us',
+  ar = 'ar',
+  cl = 'cl',
+  mx = 'mx',
+  ph = 'ph',
+  others = 'others'
 }

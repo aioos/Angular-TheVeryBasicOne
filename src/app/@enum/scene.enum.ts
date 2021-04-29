@@ -1,6 +1,11 @@
 export enum Scene {
-  分享 = 'share',
   app_open = 'app_open',
-  祈祷 = 'prayer',
-  问答 = 'quiz'
+  crossword = 'crossword',
+  emotion_click = 'emotion_click',
+  exit = 'exit',
+  newsfeed = 'newsfeed',
+  prayer = 'prayer',
+  quiz = 'quiz',
+  read_page_mark = 'read_page_mark',
+  share = 'share'
 }
