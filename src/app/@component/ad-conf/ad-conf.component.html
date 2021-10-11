@@ -44,6 +44,20 @@
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>场景广告名称</mat-label>
+                <mat-select [(value)]="params.scene_ad_channel" (valueChange)="search()">
+                    <mat-option *ngFor="let channel of channelList"
+                                value="{{channel.value}}">{{channel.key}}</mat-option>
+                </mat-select>
+                <button mat-icon-button
+                        matSuffix
+                        *ngIf="params.scene_ad_channel"
+                        (click)="params.scene_ad_channel=null; search();$event.stopPropagation()"
+                        color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
         </div>
         <mat-card-actions align="right">
             <button mat-button mat-raised-button color="primary" (click)="add()">新建</button>

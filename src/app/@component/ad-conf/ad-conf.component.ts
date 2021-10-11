@@ -8,6 +8,7 @@ import { Params } from './params';
 import { Country } from '../../@enum/country.enum';
 import { AppID } from '../../@enum/app-id.enum';
 import { Scene } from '../../@enum/scene.enum';
+import { ChannelsEnum } from '../../@enum/channels.enum';
 
 @Component({
   selector: 'app-ad-conf',
@@ -28,6 +29,7 @@ export class AdConfComponent implements OnInit {
   countryParamList = this.utilsService.enumToArray(Country);
   appIDParamList = this.utilsService.enumToArray(AppID);
   sceneParamList = this.utilsService.enumToArray(Scene);
+  channelList = this.utilsService.enumToArray(ChannelsEnum);
 
   constructor(
     private utilsService: UtilsService,
