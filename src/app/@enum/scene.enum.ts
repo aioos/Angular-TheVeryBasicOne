@@ -14,4 +14,7 @@ export enum Scene {
   level_interstitial3 = 'level_interstitial3',
   banner = 'banner',
   gold_reward = 'gold_reward',
+  interstitial = 'interstitial',
+  reward = 'reward',
+  native = 'native',
 }
