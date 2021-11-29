@@ -54,7 +54,9 @@ export class AdConfComponent implements OnInit {
   }
 
   del(row: AdConf): void {
-    this.utilsService.del(this.baseUrl, row.id).subscribe(() => this.search());
+    if (confirm('确认删除该条目？')) {
+      this.utilsService.del(this.baseUrl, row.id).subscribe(() => this.search());
+    }
   }
 
   add(): void {

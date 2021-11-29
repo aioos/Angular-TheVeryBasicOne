@@ -73,8 +73,13 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>场景广告渠道</mat-label>
-                <input matInput [ngModel]="item.scene_ad_channel" name="scene_ad_channel" #scene_ad_channel="ngModel"
-                       required>
+                <!--                <input matInput [ngModel]="item.scene_ad_channel" name="scene_ad_channel" #scene_ad_channel="ngModel"-->
+                <!--                       required>-->
+                <mat-select [ngModel]="item.scene_ad_channel" name="scene_ad_channel" #scene_ad_channel="ngModel"
+                            required>
+                    <mat-option *ngFor="let channel of channelParamList"
+                                value="{{channel.value}}">{{channel.key}}</mat-option>
+                </mat-select>
                 <button mat-icon-button matSuffix *ngIf="scene_ad_channel.value" (click)="scene_ad_channel.reset()"
                         color="warn">
                     <mat-icon>close</mat-icon>

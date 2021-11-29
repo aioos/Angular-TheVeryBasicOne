@@ -45,7 +45,7 @@
                 </button>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <mat-label>场景广告名称</mat-label>
+                <mat-label>场景广告渠道</mat-label>
                 <mat-select [(value)]="params.scene_ad_channel" (valueChange)="search()">
                     <mat-option *ngFor="let channel of channelList"
                                 value="{{channel.value}}">{{channel.key}}</mat-option>

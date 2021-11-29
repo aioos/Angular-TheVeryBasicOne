@@ -7,6 +7,7 @@ import { FormControl, NgForm } from '@angular/forms';
 import { Country } from '../../../../@enum/country.enum';
 import { AppID } from '../../../../@enum/app-id.enum';
 import { Scene } from '../../../../@enum/scene.enum';
+import { ChannelsEnum } from '../../../../@enum/channels.enum';
 
 @Component({
   selector: 'app-one-focus',
@@ -18,6 +19,7 @@ export class OneFocusComponent implements OnInit {
   countryParamList = this.utilsService.enumToArray(Country);
   appIDParamList = this.utilsService.enumToArray(AppID);
   sceneParamList = this.utilsService.enumToArray(Scene);
+  channelParamList = this.utilsService.enumToArray(ChannelsEnum);
 
   constructor(
     private matDialogRef: MatDialogRef<OneFocusComponent>,

@@ -7,5 +7,11 @@ export enum Scene {
   prayer = 'prayer',
   quiz = 'quiz',
   read_page_mark = 'read_page_mark',
-  share = 'share'
+  share = 'share',
+  level_interstitial = 'level_interstitial',
+  level_interstitial1 = 'level_interstitial1',
+  level_interstitial2 = 'level_interstitial2',
+  level_interstitial3 = 'level_interstitial3',
+  banner = 'banner',
+  gold_reward = 'gold_reward',
 }
