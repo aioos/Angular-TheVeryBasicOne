@@ -4,4 +4,5 @@ export enum ChannelsEnum {
   mopub = 'mopub',
   applovin = 'applovin',
   unity = 'unity',
+  helium = 'helium',
 }
